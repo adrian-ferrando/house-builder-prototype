@@ -1,9 +1,9 @@
-import CustomCanvas from "@/components/custom-canvas";
+import Drawer from "@/components/drawer/drawer";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <CustomCanvas />
+    <main className="h-screen w-screen">
+      <Drawer />
     </main>
   );
 }
