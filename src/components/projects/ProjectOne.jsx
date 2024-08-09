@@ -9,104 +9,106 @@ Title: Hello Neighbor Pre alpha House (decorated)
 */
 
 import React from "react";
-import { useGLTF } from "@react-three/drei";
+import { Center, useGLTF } from "@react-three/drei";
 
 export function ProjectOne(props) {
   const { nodes, materials } = useGLTF("/project-one-transformed.glb");
   return (
-    <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Object_4.geometry}
-        material={materials["pipe.png"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={2.656}
-      />
-      <mesh
-        geometry={nodes.Object_5.geometry}
-        material={materials["porch.png"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={2.656}
-      />
-      <mesh
-        geometry={nodes.Object_6.geometry}
-        material={materials["foundation.png"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={2.656}
-      />
-      <mesh
-        geometry={nodes.Object_7.geometry}
-        material={materials["walls.png"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={2.656}
-      />
-      <mesh
-        geometry={nodes.Object_8.geometry}
-        material={materials["roof.png"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={2.656}
-      />
-      <mesh
-        geometry={nodes.Object_9.geometry}
-        material={materials["wood.png"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={2.656}
-      />
-      <mesh
-        geometry={nodes.Object_10.geometry}
-        material={materials["room.png"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={2.656}
-      />
-      <mesh
-        geometry={nodes.Object_12.geometry}
-        material={materials.door_m}
-        position={[-0.782, 2.923, 9.956]}
-        scale={0.025}
-      />
-      <mesh
-        geometry={nodes.Object_20.geometry}
-        material={materials["Material.001"]}
-        position={[-9.97, 10.362, 8.62]}
-        scale={[4.709, 7.01, 1]}
-      />
-      <mesh
-        geometry={nodes.Object_22.geometry}
-        material={materials.bed_m_inst}
-        position={[10.259, 2.833, 3.443]}
-        scale={0.025}
-      />
-      <mesh
-        geometry={nodes.Object_25.geometry}
-        material={materials.window_big_m}
-        position={[10.093, 7.054, 13.394]}
-        rotation={[-Math.PI, 0.003, -Math.PI]}
-        scale={0.025}
-      />
-      <mesh
-        geometry={nodes.Object_31.geometry}
-        material={materials.blinds_m_Inst}
-        position={[10.156, -0.379, 12.953]}
-        scale={0.025}
-      />
-      <mesh
-        geometry={nodes.Object_33.geometry}
-        material={materials.switch_m_Inst}
-        position={[4.234, 6.099, 7.289]}
-        rotation={[-Math.PI, 1.509, -Math.PI]}
-        scale={0.04}
-      />
-      <mesh
-        geometry={nodes.Object_35.geometry}
-        material={materials.lampholder_m}
-        position={[10.212, 10.021, 5.107]}
-        scale={0.025}
-      />
-      <mesh
-        geometry={nodes.Object_38.geometry}
-        material={materials.bulb_base_m}
-        position={[10.238, 9.798, 5.127]}
-        scale={0.025}
-      />
+    <group {...props} castShadow dispose={null}>
+      <Center top>
+        <mesh
+          geometry={nodes.Object_4.geometry}
+          material={materials["pipe.png"]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={2.656}
+        />
+        <mesh
+          geometry={nodes.Object_5.geometry}
+          material={materials["porch.png"]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={2.656}
+        />
+        <mesh
+          geometry={nodes.Object_6.geometry}
+          material={materials["foundation.png"]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={2.656}
+        />
+        <mesh
+          geometry={nodes.Object_7.geometry}
+          material={materials["walls.png"]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={2.656}
+        />
+        <mesh
+          geometry={nodes.Object_8.geometry}
+          material={materials["roof.png"]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={2.656}
+        />
+        <mesh
+          geometry={nodes.Object_9.geometry}
+          material={materials["wood.png"]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={2.656}
+        />
+        <mesh
+          geometry={nodes.Object_10.geometry}
+          material={materials["room.png"]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={2.656}
+        />
+        <mesh
+          geometry={nodes.Object_12.geometry}
+          material={materials.door_m}
+          position={[-0.782, 2.923, 9.956]}
+          scale={0.025}
+        />
+        <mesh
+          geometry={nodes.Object_20.geometry}
+          material={materials["Material.001"]}
+          position={[-9.97, 10.362, 8.62]}
+          scale={[4.709, 7.01, 1]}
+        />
+        <mesh
+          geometry={nodes.Object_22.geometry}
+          material={materials.bed_m_inst}
+          position={[10.259, 2.833, 3.443]}
+          scale={0.025}
+        />
+        <mesh
+          geometry={nodes.Object_25.geometry}
+          material={materials.window_big_m}
+          position={[10.093, 7.054, 13.394]}
+          rotation={[-Math.PI, 0.003, -Math.PI]}
+          scale={0.025}
+        />
+        <mesh
+          geometry={nodes.Object_31.geometry}
+          material={materials.blinds_m_Inst}
+          position={[10.156, -0.379, 12.953]}
+          scale={0.025}
+        />
+        <mesh
+          geometry={nodes.Object_33.geometry}
+          material={materials.switch_m_Inst}
+          position={[4.234, 6.099, 7.289]}
+          rotation={[-Math.PI, 1.509, -Math.PI]}
+          scale={0.04}
+        />
+        <mesh
+          geometry={nodes.Object_35.geometry}
+          material={materials.lampholder_m}
+          position={[10.212, 10.021, 5.107]}
+          scale={0.025}
+        />
+        <mesh
+          geometry={nodes.Object_38.geometry}
+          material={materials.bulb_base_m}
+          position={[10.238, 9.798, 5.127]}
+          scale={0.025}
+        />
+      </Center>
     </group>
   );
 }

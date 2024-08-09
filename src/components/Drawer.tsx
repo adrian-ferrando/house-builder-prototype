@@ -1,26 +1,33 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { Leva } from "leva";
+import {
+  AccumulativeShadows,
+  CameraControls,
+  Center,
+  Loader,
+  OrbitControls,
+  RandomizedLight,
+} from "@react-three/drei";
 import { ProjectOne } from "./projects/ProjectOne";
-import { ProjectTwo } from "./projects/ProjectTwo";
 
 export default function Drawer() {
   return (
     <>
-      {/* Controller menu */}
-      <Leva collapsed />
+      <Canvas shadows camera={{ position: [-25, -10, 40], fov: 45 }}>
+        <OrbitControls
+          enablePan={false}
+          enableZoom={false}
+          minPolarAngle={Math.PI / 2.1}
+          maxPolarAngle={Math.PI / 2.1}
+        />
 
-      <Canvas>
+        <ProjectOne position={[-5, -10, 0]} />
+
         <ambientLight intensity={0.1} />
         <directionalLight position={[0, 0, 5]} />
-
-        <ProjectOne />
-        {/* <ProjectTwo /> */}
-
-        <OrbitControls />
       </Canvas>
+      <Loader />
     </>
   );
 }

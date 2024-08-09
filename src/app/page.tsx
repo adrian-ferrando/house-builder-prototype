@@ -9,7 +9,10 @@ export default function HomePage() {
             <Drawer />
           </div>
 
-          <div className="w-1/4 h-full bg-gray-200">rightbar</div>
+          <div className="w-1/4 h-full bg-gray-200">
+            rightbar
+            {/* <Leva /> */}
+          </div>
         </div>
 
         <div className="w-full h-16 bg-gray-300">bottombar</div>
