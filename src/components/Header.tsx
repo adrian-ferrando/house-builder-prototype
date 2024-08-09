@@ -10,7 +10,7 @@ export default function Header() {
   const navbarId = useId();
 
   return (
-    <header className="header-animate backdrop-blur-[10px] md:backdrop-blur-0 w-full mb-10 overflow-hidden z-[99999] py-8">
+    <header className="z-50 border-b border-white border-opacity-10 backdrop-blur-lg shadow-md">
       <div className="grid items-center justify-center md:justify-normal w-full grid-cols-[auto_1fr] mx-auto  gap-x-10 md:flex max-w-screen-base">
         <a
           href="/"
