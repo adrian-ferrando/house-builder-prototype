@@ -11,8 +11,8 @@ Title: House
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 
-export function ProjectThree(props) {
-  const { nodes, materials } = useGLTF("/project-three-transformed.glb");
+export function ProjectTwo(props) {
+  const { nodes, materials } = useGLTF("/project-second-transformed.glb");
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -67,4 +67,4 @@ export function ProjectThree(props) {
   );
 }
 
-useGLTF.preload("/project-three-transformed.glb");
+useGLTF.preload("/project-second-transformed.glb");

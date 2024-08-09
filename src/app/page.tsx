@@ -1,4 +1,4 @@
-import Drawer from "@/components/drawer/drawer";
+import Drawer from "@/components/Drawer";
 
 export default function HomePage() {
   return (

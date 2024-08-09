@@ -1,12 +1,10 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import Square from "../square";
 import { OrbitControls } from "@react-three/drei";
 import { Leva } from "leva";
-import { ProjectOne } from "../projects/project-one";
-import { ProjectTwo } from "../projects/project-two";
-import { ProjectThree } from "../projects/project-three";
+import { ProjectOne } from "./projects/ProjectOne";
+import { ProjectTwo } from "./projects/ProjectTwo";
 
 export default function Drawer() {
   return (
@@ -20,7 +18,6 @@ export default function Drawer() {
 
         <ProjectOne />
         {/* <ProjectTwo /> */}
-        {/* <ProjectThree /> */}
 
         <OrbitControls />
       </Canvas>

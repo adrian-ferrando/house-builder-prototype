@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* background: #000214; */
+  overflow-x: hidden;
+}
+
+@layer components {
+  .header-animate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    animation: reduce-header linear both;
+    animation-timeline: scroll();
+    animation-range: 0 150px;
+  }
+}
