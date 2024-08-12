@@ -33,6 +33,7 @@ export function ProjectOne(props) {
       />
       <mesh
         castShadow
+        receiveShadow
         geometry={nodes.Object_6.geometry}
         material={materials["foundation.png"]}
         rotation={[Math.PI / 2, 0, 0]}
@@ -40,6 +41,7 @@ export function ProjectOne(props) {
       />
       <mesh
         castShadow
+        receiveShadow
         geometry={nodes.Object_7.geometry}
         material={materials["walls.png"]}
         rotation={[Math.PI / 2, 0, 0]}

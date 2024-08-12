@@ -2,17 +2,8 @@
 
 import { Canvas } from "@react-three/fiber";
 import { ProjectOne } from "./projects/ProjectOne";
-import * as THREE from "three";
-import {
-  AccumulativeShadows,
-  Environment,
-  Loader,
-  OrbitControls,
-  RandomizedLight,
-  useHelper,
-} from "@react-three/drei";
-import { Suspense, useRef, useState, useTransition } from "react";
-import { useControls } from "leva";
+import { OrbitControls, useHelper } from "@react-three/drei";
+import { useRef } from "react";
 import { DirectionalLight, DirectionalLightHelper } from "three";
 
 export default function Drawer() {
@@ -44,7 +35,9 @@ function Lights() {
         position={[10, 15, 30]}
         intensity={1.5}
         castShadow
-      />
+      >
+        <orthographicCamera attach="shadow-camera" args={[-20, 20, -30, 30]} />
+      </directionalLight>
     </>
   );
 }
