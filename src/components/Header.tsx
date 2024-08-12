@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="z-50 border-b border-white border-opacity-10 backdrop-blur-lg shadow-md">
-      <div className="grid items-center justify-center md:justify-normal w-full grid-cols-[auto_1fr] mx-auto  gap-x-10 md:flex max-w-screen-base">
+      <div className="grid items-center justify-center md:justify-normal w-full grid-cols-[auto_1fr] mx-auto gap-x-10 md:flex max-w-screen-base">
         <a
           href="/"
           className="ml-4 transition-transform duration-300 hover:scale-125"

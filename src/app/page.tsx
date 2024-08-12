@@ -1,4 +1,5 @@
 import Drawer from "@/components/Drawer";
+import BottomBar from "@/components/BottomBar";
 
 export default function HomePage() {
   return (
@@ -15,7 +16,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="w-full h-16 bg-gray-300">bottombar</div>
+        <div className="w-full h-24 bg-gray-300">
+          <BottomBar />
+        </div>
       </section>
     </main>
   );
