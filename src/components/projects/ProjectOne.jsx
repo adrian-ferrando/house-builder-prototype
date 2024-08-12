@@ -8,8 +8,7 @@ Source: https://sketchfab.com/3d-models/hello-neighbor-pre-alpha-house-decorated
 Title: Hello Neighbor Pre alpha House (decorated)
 */
 
-import React from "react";
-import { Center, useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 
 export function ProjectOne(props) {
   const { nodes, materials } = useGLTF("/project-one-transformed.glb");
