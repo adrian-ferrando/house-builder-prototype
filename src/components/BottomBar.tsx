@@ -3,7 +3,7 @@ import { BottombarIcons } from "./icons/bottombar";
 
 export default function BottomBar() {
   return (
-    <div className="flex items-center justify-center w-full h-full mx-auto gap-x-[2px]">
+    <div className="flex items-center justify-center w-full h-full mx-auto gap-x-[2px] z-50">
       <Button>
         <span>Doors</span>
         <BottombarIcons.Door className="h-12 w-12" />

@@ -1,31 +1,32 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
+import { ProjectOne } from "./projects/ProjectOne";
 import {
   AccumulativeShadows,
-  CameraControls,
-  Center,
+  Environment,
   Loader,
   OrbitControls,
   RandomizedLight,
 } from "@react-three/drei";
-import { ProjectOne } from "./projects/ProjectOne";
+import { useState, useTransition } from "react";
+import { useControls } from "leva";
 
 export default function Drawer() {
   return (
     <>
-      <Canvas shadows camera={{ position: [-25, -10, 40], fov: 45 }}>
+      <Canvas shadows camera={{ position: [0, 0, 50], fov: 40 }}>
+        <ProjectOne position={[0, -12, 0]} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} castShadow />;
         <OrbitControls
+          autoRotate
+          autoRotateSpeed={2}
           enablePan={false}
           enableZoom={false}
-          minPolarAngle={Math.PI / 2.1}
-          maxPolarAngle={Math.PI / 2.1}
+          minPolarAngle={Math.PI / 2}
+          maxPolarAngle={Math.PI / 2}
         />
-
-        <ProjectOne position={[-5, -10, 0]} />
-
-        <ambientLight intensity={0.1} />
-        <directionalLight position={[0, 0, 5]} />
       </Canvas>
       <Loader />
     </>
