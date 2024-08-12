@@ -18,7 +18,7 @@ export const Button = <C extends React.ElementType = "button">({
     <As
       {...restOfProps}
       className={cn(
-        "flex flex-col gap-y-2 items-center text-white px-10 h-full mb-3 bg-button shadow-button hover:shadow-button-hover hover:scale-110 transition-all duration-300",
+        "flex flex-col gap-y-2 items-center text-white px-10 h-full mb-3 bg-button shadow-button hover:shadow-button-hover hover:scale-110 transition-all duration-300 z-50",
         restOfProps.className
       )}
     >
