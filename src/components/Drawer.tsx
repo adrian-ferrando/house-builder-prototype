@@ -2,13 +2,21 @@
 
 import { useRef } from "react";
 import * as THREE from "three";
+import { Floor } from "./Floor";
+import { useControls } from "leva";
 import { Canvas } from "@react-three/fiber";
 import { ProjectOne } from "./projects/ProjectOne";
+import { ProjectTwo } from "./projects/ProjectTwo";
 import { DirectionalLight, DirectionalLightHelper } from "three";
 import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
-import { Floor } from "./Floor";
 
 export default function Drawer() {
+  const controls = useControls({
+    Model: {
+      options: ["First project", "Second project"],
+    },
+  });
+
   return (
     <Canvas
       gl={{
@@ -19,7 +27,15 @@ export default function Drawer() {
     >
       <Camera />
       <Lights />
-      <ProjectOne position={[0, -12.5, 0]} />
+
+      {controls.Model === "First project" && (
+        <ProjectOne position={[0, -12.5, 0]} />
+      )}
+
+      {controls.Model === "Second project" && (
+        <ProjectTwo position={[0, -12.5, 0]} />
+      )}
+
       <Floor position={[0, -12, 0]} />
       <OrbitControls
         autoRotate

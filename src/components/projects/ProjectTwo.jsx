@@ -8,7 +8,6 @@ Source: https://sketchfab.com/3d-models/house-be18892d167f40d9bb4d7dcae0eb0573
 Title: House
 */
 
-import React from "react";
 import { useGLTF } from "@react-three/drei";
 
 export function ProjectTwo(props) {
@@ -16,52 +15,68 @@ export function ProjectTwo(props) {
   return (
     <group {...props} dispose={null}>
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Object_2.geometry}
         material={materials.PaletteMaterial001}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.425}
+        scale={1.5}
       />
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Object_5.geometry}
         material={materials.door1}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.425}
+        scale={1.5}
       />
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Object_6.geometry}
         material={materials.door2}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.425}
+        scale={1.5}
       />
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Object_7.geometry}
         material={materials.panesl}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.425}
+        scale={1.5}
       />
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Object_8.geometry}
         material={materials.slats}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.425}
+        scale={1.5}
       />
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Object_10.geometry}
         material={materials.PaletteMaterial002}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.425}
+        scale={1.5}
       />
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Object_11.geometry}
         material={materials.woodfloor}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.425}
+        scale={1.5}
       />
       <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.Object_12.geometry}
         material={materials.foof}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.425}
+        scale={1.5}
       />
     </group>
   );
