@@ -1,6 +1,6 @@
 import Drawer from "@/components/Drawer";
-import BottomBar from "@/components/BottomBar";
 import RightBar from "@/components/RightBar";
+import BottomBar from "@/components/BottomBar";
 
 export default function HomePage() {
   return (
