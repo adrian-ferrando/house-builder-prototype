@@ -15,6 +15,40 @@ export default function Drawer() {
     Model: {
       options: ["First project", "Second project"],
     },
+    autorotate: { value: true, label: "Auto Rotate" },
+    rotateSpeed: { value: 2, min: 1, max: 10, label: "Rotate Speed" },
+    doorType: {
+      options: ["Type 1", "Type 2", "Type 3", "Type 4"],
+      label: "Door Type",
+    },
+    doorColor: {
+      options: ["Red", "Green", "Blue", "Yellow"],
+      label: "Door Color",
+    },
+    windowType: {
+      options: ["Type 1", "Type 2", "Type 3", "Type 4"],
+      label: "Window Type",
+    },
+    windowColor: {
+      options: ["Red", "Green", "Blue", "Yellow"],
+      label: "Window Color",
+    },
+    wallsType: {
+      options: ["Type 1", "Type 2", "Type 3", "Type 4"],
+      label: "Walls Type",
+    },
+    wallsColor: {
+      options: ["Red", "Green", "Blue", "Yellow"],
+      label: "Walls Color",
+    },
+    roofType: {
+      options: ["Type 1", "Type 2", "Type 3", "Type 4"],
+      label: "Roof Type",
+    },
+    roofColor: {
+      options: ["Red", "Green", "Blue", "Yellow"],
+      label: "Roof Color",
+    },
   });
 
   return (
@@ -38,8 +72,8 @@ export default function Drawer() {
 
       <Floor position={[0, -12, 0]} />
       <OrbitControls
-        autoRotate
-        autoRotateSpeed={2}
+        autoRotate={controls.autorotate}
+        autoRotateSpeed={controls.rotateSpeed}
         enablePan={false}
         enableZoom={false}
         minPolarAngle={Math.PI / 2}
