@@ -38,7 +38,7 @@ export default function Drawer() {
       label: "Walls Type",
     },
     wallsColor: {
-      options: ["Red", "Green", "Blue", "Yellow"],
+      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Walls Color",
     },
     roofType: {
@@ -46,7 +46,7 @@ export default function Drawer() {
       label: "Roof Type",
     },
     roofColor: {
-      options: ["Red", "Green", "Blue", "Yellow"],
+      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Roof Color",
     },
   });
@@ -63,11 +63,11 @@ export default function Drawer() {
       <Lights />
 
       {controls.Model === "First project" && (
-        <ProjectOne position={[0, -12.5, 0]} />
+        <ProjectOne position={[0, -12.5, 0]} controls={controls} />
       )}
 
       {controls.Model === "Second project" && (
-        <ProjectTwo position={[0, -12.5, 0]} />
+        <ProjectTwo position={[0, -12.5, 0]} controls={controls} />
       )}
 
       <Floor position={[0, -12, 0]} />

@@ -9,9 +9,27 @@ Title: Hello Neighbor Pre alpha House (decorated)
 */
 
 import { useGLTF } from "@react-three/drei";
+import { useRef, useEffect, useState } from "react";
 
 export function ProjectOne(props) {
   const { nodes, materials } = useGLTF("/project-one-transformed.glb");
+
+  const wallsRef = useRef();
+  const [wallsOriginalColor, setWallsOriginalColor] = useState(null);
+
+  const roofRef = useRef();
+  const [roofOriginalColor, setRoofOriginalColor] = useState(null);
+
+  useEffect(() => {
+    if (wallsRef.current) {
+      setWallsOriginalColor(wallsRef.current.material.color.clone());
+    }
+
+    if (roofRef.current) {
+      setRoofOriginalColor(roofRef.current.material.color.clone());
+    }
+  }, [wallsRef.current]);
+
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -39,21 +57,43 @@ export function ProjectOne(props) {
         scale={2.656}
       />
       <mesh
+        ref={wallsRef}
         castShadow
         receiveShadow
         geometry={nodes.Object_7.geometry}
         material={materials["walls.png"]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={2.656}
-      />
+      >
+        <primitive
+          attach="material"
+          object={materials["walls.png"]}
+          color={
+            props.controls.wallsColor === "Standard"
+              ? wallsOriginalColor
+              : props.controls.wallsColor
+          }
+        />
+      </mesh>
       <mesh
+        ref={roofRef}
         castShadow
         receiveShadow
         geometry={nodes.Object_8.geometry}
         material={materials["roof.png"]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={2.656}
-      />
+      >
+        <primitive
+          attach="material"
+          object={materials["roof.png"]}
+          color={
+            props.controls.roofColor === "Standard"
+              ? roofOriginalColor
+              : props.controls.roofColor
+          }
+        />
+      </mesh>
       <mesh
         castShadow
         receiveShadow
