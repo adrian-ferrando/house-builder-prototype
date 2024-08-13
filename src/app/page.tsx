@@ -1,5 +1,6 @@
 import Drawer from "@/components/Drawer";
 import BottomBar from "@/components/BottomBar";
+import RightBar from "@/components/RightBar";
 
 export default function HomePage() {
   return (
@@ -11,8 +12,7 @@ export default function HomePage() {
           </div>
 
           <div className="w-1/4 h-full bg-gray-200">
-            rightbar
-            {/* <Leva /> */}
+            <RightBar />
           </div>
         </div>
 
