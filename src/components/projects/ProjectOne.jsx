@@ -9,9 +9,41 @@ Title: Hello Neighbor Pre alpha House (decorated)
 */
 
 import { useGLTF } from "@react-three/drei";
+import { useRef, useEffect, useState } from "react";
 
 export function ProjectOne(props) {
   const { nodes, materials } = useGLTF("/project-one-transformed.glb");
+
+  const doorRef = useRef();
+  const [doorOriginalColor, setDoorOriginalColor] = useState(null);
+
+  const windowRef = useRef();
+  const [windowOriginalColor, setWindowOriginalColor] = useState(null);
+
+  const wallsRef = useRef();
+  const [wallsOriginalColor, setWallsOriginalColor] = useState(null);
+
+  const roofRef = useRef();
+  const [roofOriginalColor, setRoofOriginalColor] = useState(null);
+
+  useEffect(() => {
+    if (doorRef.current) {
+      setDoorOriginalColor(doorRef.current.material.color.clone());
+    }
+
+    if (windowRef.current) {
+      setWindowOriginalColor(windowRef.current.material.color.clone());
+    }
+
+    if (wallsRef.current) {
+      setWallsOriginalColor(wallsRef.current.material.color.clone());
+    }
+
+    if (roofRef.current) {
+      setRoofOriginalColor(roofRef.current.material.color.clone());
+    }
+  }, [doorRef.current, windowRef.current, wallsRef.current, roofRef.current]);  
+
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -39,21 +71,43 @@ export function ProjectOne(props) {
         scale={2.656}
       />
       <mesh
+        ref={wallsRef}
         castShadow
         receiveShadow
         geometry={nodes.Object_7.geometry}
         material={materials["walls.png"]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={2.656}
-      />
+      >
+        <primitive
+          attach="material"
+          object={materials["walls.png"]}
+          color={
+            props.controls.wallsColor === "Standard"
+              ? wallsOriginalColor
+              : props.controls.wallsColor
+          }
+        />
+      </mesh>
       <mesh
+        ref={roofRef}
         castShadow
         receiveShadow
         geometry={nodes.Object_8.geometry}
         material={materials["roof.png"]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={2.656}
-      />
+      >
+        <primitive
+          attach="material"
+          object={materials["roof.png"]}
+          color={
+            props.controls.roofColor === "Standard"
+              ? roofOriginalColor
+              : props.controls.roofColor
+          }
+        />
+      </mesh>
       <mesh
         castShadow
         receiveShadow
@@ -71,13 +125,24 @@ export function ProjectOne(props) {
         scale={2.656}
       />
       <mesh
+        ref={doorRef}
         castShadow
         receiveShadow
         geometry={nodes.Object_12.geometry}
         material={materials.door_m}
         position={[-0.782, 2.923, 9.956]}
         scale={0.025}
-      />
+      >
+        <primitive
+          attach="material"
+          object={materials.door_m}
+          color={
+            props.controls.doorColor === "Standard"
+              ? doorOriginalColor
+              : props.controls.doorColor
+          }
+        />
+      </mesh>
       <mesh
         castShadow
         receiveShadow
@@ -95,6 +160,7 @@ export function ProjectOne(props) {
         scale={0.025}
       />
       <mesh
+        ref={windowRef}
         castShadow
         receiveShadow
         geometry={nodes.Object_25.geometry}
@@ -102,7 +168,17 @@ export function ProjectOne(props) {
         position={[10.093, 7.054, 13.394]}
         rotation={[-Math.PI, 0.003, -Math.PI]}
         scale={0.025}
-      />
+      >
+        <primitive
+          attach="material"
+          object={materials.window_big_m}
+          color={
+            props.controls.windowColor === "Standard"
+              ? windowOriginalColor
+              : props.controls.windowColor
+          }
+        />
+      </mesh>
       <mesh
         castShadow
         receiveShadow

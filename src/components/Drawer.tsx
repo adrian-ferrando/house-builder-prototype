@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
 import * as THREE from "three";
 import { Floor } from "./Floor";
 import { useControls } from "leva";
+import { useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ProjectOne } from "./projects/ProjectOne";
 import { ProjectTwo } from "./projects/ProjectTwo";
@@ -11,7 +11,7 @@ import { DirectionalLight, DirectionalLightHelper } from "three";
 import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 
 export default function Drawer() {
-  const controls = useControls({
+  const [controls, setControls] = useControls(() => ({
     Model: {
       options: ["First project", "Second project"],
     },
@@ -22,7 +22,7 @@ export default function Drawer() {
       label: "Door Type",
     },
     doorColor: {
-      options: ["Red", "Green", "Blue", "Yellow"],
+      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Door Color",
     },
     windowType: {
@@ -30,7 +30,7 @@ export default function Drawer() {
       label: "Window Type",
     },
     windowColor: {
-      options: ["Red", "Green", "Blue", "Yellow"],
+      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Window Color",
     },
     wallsType: {
@@ -38,7 +38,7 @@ export default function Drawer() {
       label: "Walls Type",
     },
     wallsColor: {
-      options: ["Red", "Green", "Blue", "Yellow"],
+      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Walls Color",
     },
     roofType: {
@@ -46,10 +46,10 @@ export default function Drawer() {
       label: "Roof Type",
     },
     roofColor: {
-      options: ["Red", "Green", "Blue", "Yellow"],
+      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Roof Color",
     },
-  });
+  }));
 
   return (
     <Canvas
@@ -63,11 +63,15 @@ export default function Drawer() {
       <Lights />
 
       {controls.Model === "First project" && (
-        <ProjectOne position={[0, -12.5, 0]} />
+        <ProjectOne position={[0, -12.5, 0]} controls={controls} />
       )}
 
       {controls.Model === "Second project" && (
-        <ProjectTwo position={[0, -12.5, 0]} />
+        <ProjectTwo
+          position={[-24, -12.5, 6]}
+          controls={controls}
+          setControls={setControls}
+        />
       )}
 
       <Floor position={[0, -12, 0]} />
