@@ -76,10 +76,10 @@ export default function Drawer() {
 
       <Floor position={[0, -12, 0]} />
       <OrbitControls
-        //autoRotate={controls.autorotate}
-        //autoRotateSpeed={controls.rotateSpeed}
+        autoRotate={controls.autorotate}
+        autoRotateSpeed={controls.rotateSpeed}
         enablePan={false}
-        //enableZoom={false}
+        enableZoom={false}
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}
       />
