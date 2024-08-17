@@ -37,9 +37,16 @@ export function ProjectTwo(props) {
     }
 
     if (props.controls.roofColor !== "Standard") {
-      console.log(props);
+      alert("Roof color is not supported on this model");
+      props.setControls({ roofColor: "Standard" });
     }
-  }, [props.controls, doorRef.current, windowRef.current, wallsRef.current]);
+  }, [
+    props.controls.Model,
+    props.controls.roofColor,
+    doorRef.current,
+    windowRef.current,
+    wallsRef.current,
+  ]);
 
   return (
     <group {...props} dispose={null}>

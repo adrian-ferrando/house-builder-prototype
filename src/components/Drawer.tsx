@@ -11,9 +11,7 @@ import { DirectionalLight, DirectionalLightHelper } from "three";
 import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 
 export default function Drawer() {
-  const [roofColor, setRoofColor] = useState("Standard");
-
-  const controls = useControls({
+  const [controls, setControls] = useControls(() => ({
     Model: {
       options: ["First project", "Second project"],
     },
@@ -48,11 +46,10 @@ export default function Drawer() {
       label: "Roof Type",
     },
     roofColor: {
-      value: roofColor,
       options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Roof Color",
     },
-  });
+  }));
 
   return (
     <Canvas
@@ -70,7 +67,11 @@ export default function Drawer() {
       )}
 
       {controls.Model === "Second project" && (
-        <ProjectTwo position={[-24, -12.5, 6]} controls={controls} />
+        <ProjectTwo
+          position={[-24, -12.5, 6]}
+          controls={controls}
+          setControls={setControls}
+        />
       )}
 
       <Floor position={[0, -12, 0]} />
