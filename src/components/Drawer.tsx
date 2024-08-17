@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
 import * as THREE from "three";
 import { Floor } from "./Floor";
 import { useControls } from "leva";
+import { useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ProjectOne } from "./projects/ProjectOne";
 import { ProjectTwo } from "./projects/ProjectTwo";
@@ -11,6 +11,8 @@ import { DirectionalLight, DirectionalLightHelper } from "three";
 import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 
 export default function Drawer() {
+  const [roofColor, setRoofColor] = useState("Standard");
+
   const controls = useControls({
     Model: {
       options: ["First project", "Second project"],
@@ -22,7 +24,7 @@ export default function Drawer() {
       label: "Door Type",
     },
     doorColor: {
-      options: ["Red", "Green", "Blue", "Yellow"],
+      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Door Color",
     },
     windowType: {
@@ -30,7 +32,7 @@ export default function Drawer() {
       label: "Window Type",
     },
     windowColor: {
-      options: ["Red", "Green", "Blue", "Yellow"],
+      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Window Color",
     },
     wallsType: {
@@ -46,6 +48,7 @@ export default function Drawer() {
       label: "Roof Type",
     },
     roofColor: {
+      value: roofColor,
       options: ["Standard", "Red", "Green", "Blue", "Yellow"],
       label: "Roof Color",
     },
@@ -67,15 +70,15 @@ export default function Drawer() {
       )}
 
       {controls.Model === "Second project" && (
-        <ProjectTwo position={[0, -12.5, 0]} controls={controls} />
+        <ProjectTwo position={[-24, -12.5, 6]} controls={controls} />
       )}
 
       <Floor position={[0, -12, 0]} />
       <OrbitControls
-        autoRotate={controls.autorotate}
-        autoRotateSpeed={controls.rotateSpeed}
+        //autoRotate={controls.autorotate}
+        //autoRotateSpeed={controls.rotateSpeed}
         enablePan={false}
-        enableZoom={false}
+        //enableZoom={false}
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}
       />
