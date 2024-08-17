@@ -37,7 +37,7 @@ export function ProjectTwo(props) {
     }
 
     if (props.controls.roofColor !== "Standard") {
-      alert("Roof color is not supported on this model");
+      alert("Roof color is not supported on the second project model");
       props.setControls({ roofColor: "Standard" });
     }
   }, [
