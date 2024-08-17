@@ -15,30 +15,48 @@ export function ProjectTwo(props) {
   const { nodes, materials } = useGLTF("/project-second-transformed.glb");
 
   const doorRef = useRef();
+  const [doorMaterial, setDoorMaterial] = useState(null);
   const [doorOriginalColor, setDoorOriginalColor] = useState(null);
 
   const windowRef = useRef();
+  const [windowMaterial, setWindowMaterial] = useState(null);
   const [windowOriginalColor, setWindowOriginalColor] = useState(null);
 
   const wallsRef = useRef();
+  const [wallsMaterial, setWallsMaterial] = useState(null);
   const [wallsOriginalColor, setWallsOriginalColor] = useState(null);
 
   useEffect(() => {
     if (doorRef.current) {
-      setDoorOriginalColor(doorRef.current.material.color.clone());
+      const originalMaterial =
+        materials.M_22_raw_wood_oak_light_PBR_texture_seamless;
+      const clonedMaterial = originalMaterial.clone();
+      setDoorMaterial(clonedMaterial);
+      setDoorOriginalColor(originalMaterial.color.clone());
     }
 
     if (windowRef.current) {
-      setWindowOriginalColor(windowRef.current.material.color.clone());
+      const originalMaterial = materials.brushed_aluminium1;
+      const clonedMaterial = originalMaterial.clone();
+      setWindowMaterial(clonedMaterial);
+      setWindowOriginalColor(originalMaterial.color.clone());
     }
 
     if (wallsRef.current) {
-      setWallsOriginalColor(wallsRef.current.material.color.clone());
+      const originalMaterial = materials.Western_Red_Cedar_Stack;
+      const clonedMaterial = originalMaterial.clone();
+      setWallsMaterial(clonedMaterial);
+      setWallsOriginalColor(originalMaterial.color.clone());
     }
 
     if (props.controls.roofColor !== "Standard") {
-      alert("Roof color is not supported on this model");
+      alert("Roof color is not supported on the second project model");
       props.setControls({ roofColor: "Standard" });
+    }
+
+    if (props.controls.roofType !== "Type 1") {
+      alert("Roof type is not supported on the second project model");
+      props.setControls({ roofType: "Type 1" });
     }
   }, [
     props.controls.Model,
@@ -47,6 +65,107 @@ export function ProjectTwo(props) {
     windowRef.current,
     wallsRef.current,
   ]);
+
+  useEffect(() => {
+    if (doorMaterial) {
+      doorMaterial.color.set(
+        props.controls.doorColor === "Standard"
+          ? doorOriginalColor
+          : props.controls.doorColor
+      );
+    }
+
+    if (windowMaterial) {
+      windowMaterial.color.set(
+        props.controls.windowColor === "Standard"
+          ? windowOriginalColor
+          : props.controls.windowColor
+      );
+    }
+
+    if (wallsMaterial) {
+      wallsMaterial.color.set(
+        props.controls.wallsColor === "Standard"
+          ? wallsOriginalColor
+          : props.controls.wallsColor
+      );
+    }
+  }, [props.controls, doorMaterial, windowMaterial, wallsMaterial]);
+
+  useEffect(() => {
+    if (doorRef.current) {
+      const materialName =
+        props.controls.doorType === "Type 1"
+          ? materials.M_22_raw_wood_oak_light_PBR_texture_seamless
+          : props.controls.doorType === "Type 2"
+          ? materials.Douglas_Fir_Staggered1
+          : props.controls.doorType === "Type 3"
+          ? materials.Douglas_Fir_Staggered
+          : props.controls.doorType === "Type 4"
+          ? materials.Metal_Corrugated_Shiny
+          : "";
+
+      const originalMaterial = materialName;
+      const clonedMaterial = originalMaterial.clone();
+      setDoorMaterial(clonedMaterial);
+      doorRef.current.material = clonedMaterial;
+      clonedMaterial.color.set(
+        props.controls.doorColor === "Standard"
+          ? doorOriginalColor
+          : props.controls.doorColor
+      );
+    }
+  }, [props.controls.doorType]);
+
+  useEffect(() => {
+    if (windowRef.current) {
+      const materialName =
+        props.controls.windowType === "Type 1"
+          ? materials.brushed_aluminium1
+          : props.controls.windowType === "Type 2"
+          ? materials.Douglas_Fir_Staggered1
+          : props.controls.windowType === "Type 3"
+          ? materials.Douglas_Fir_Staggered
+          : props.controls.windowType === "Type 4"
+          ? materials.Metal_Corrugated_Shiny
+          : "";
+
+      const originalMaterial = materialName;
+      const clonedMaterial = originalMaterial.clone();
+      setWindowMaterial(clonedMaterial);
+      windowRef.current.material = clonedMaterial;
+      clonedMaterial.color.set(
+        props.controls.windowColor === "Standard"
+          ? windowOriginalColor
+          : props.controls.windowColor
+      );
+    }
+  }, [props.controls.windowType]);
+
+  useEffect(() => {
+    if (wallsRef.current) {
+      const materialName =
+        props.controls.wallsType === "Type 1"
+          ? materials.Western_Red_Cedar_Stack
+          : props.controls.wallsType === "Type 2"
+          ? materials.Douglas_Fir_Staggered1
+          : props.controls.wallsType === "Type 3"
+          ? materials.Douglas_Fir_Staggered
+          : props.controls.wallsType === "Type 4"
+          ? materials.Metal_Corrugated_Shiny
+          : "";
+
+      const originalMaterial = materialName;
+      const clonedMaterial = originalMaterial.clone();
+      setWallsMaterial(clonedMaterial);
+      wallsRef.current.material = clonedMaterial;
+      clonedMaterial.color.set(
+        props.controls.wallsColor === "Standard"
+          ? wallsOriginalColor
+          : props.controls.wallsColor
+      );
+    }
+  }, [props.controls.wallsType]);
 
   return (
     <group {...props} dispose={null}>
@@ -86,19 +205,9 @@ export function ProjectTwo(props) {
         castShadow
         receiveShadow
         geometry={nodes.Mesh2_Western_Red_Cedar_Stack_0.geometry}
-        material={materials.Western_Red_Cedar_Stack}
+        material={wallsMaterial}
         scale={0.004}
-      >
-        <primitive
-          attach="material"
-          object={materials.Western_Red_Cedar_Stack}
-          color={
-            props.controls.wallsColor === "Standard"
-              ? wallsOriginalColor
-              : props.controls.wallsColor
-          }
-        />
-      </mesh>
+      />
       <mesh
         castShadow
         receiveShadow
@@ -120,19 +229,9 @@ export function ProjectTwo(props) {
         castShadow
         receiveShadow
         geometry={nodes.Mesh4_Steel_Brushed_Stainless_0.geometry}
-        material={materials.brushed_aluminium1}
+        material={windowMaterial}
         scale={0.004}
-      >
-        <primitive
-          attach="material"
-          object={materials.brushed_aluminium1}
-          color={
-            props.controls.windowColor === "Standard"
-              ? windowOriginalColor
-              : props.controls.windowColor
-          }
-        />
-      </mesh>
+      />
       <mesh
         castShadow
         receiveShadow
@@ -171,19 +270,9 @@ export function ProjectTwo(props) {
         geometry={
           nodes.Mesh83_M_22_raw_wood_oak_light_PBR_texture_seamless_0.geometry
         }
-        material={materials.M_22_raw_wood_oak_light_PBR_texture_seamless}
+        material={doorMaterial}
         scale={0.004}
-      >
-        <primitive
-          attach="material"
-          object={materials.M_22_raw_wood_oak_light_PBR_texture_seamless}
-          color={
-            props.controls.doorColor === "Standard"
-              ? doorOriginalColor
-              : props.controls.doorColor
-          }
-        />
-      </mesh>
+      />
       <mesh
         castShadow
         receiveShadow

@@ -8,6 +8,7 @@ Source: https://sketchfab.com/3d-models/hello-neighbor-pre-alpha-house-decorated
 Title: Hello Neighbor Pre alpha House (decorated)
 */
 
+import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 import { useRef, useEffect, useState } from "react";
 
@@ -15,34 +16,206 @@ export function ProjectOne(props) {
   const { nodes, materials } = useGLTF("/project-one-transformed.glb");
 
   const doorRef = useRef();
+  const [doorMaterial, setDoorMaterial] = useState(null);
   const [doorOriginalColor, setDoorOriginalColor] = useState(null);
 
   const windowRef = useRef();
+  const [windowMaterial, setWindowMaterial] = useState(null);
   const [windowOriginalColor, setWindowOriginalColor] = useState(null);
 
   const wallsRef = useRef();
+  const [wallsMaterial, setWallsMaterial] = useState(null);
   const [wallsOriginalColor, setWallsOriginalColor] = useState(null);
 
   const roofRef = useRef();
+  const [roofMaterial, setRoofMaterial] = useState(null);
   const [roofOriginalColor, setRoofOriginalColor] = useState(null);
 
   useEffect(() => {
     if (doorRef.current) {
-      setDoorOriginalColor(doorRef.current.material.color.clone());
+      const originalMaterial = materials.door_m;
+      const clonedMaterial = originalMaterial.clone();
+      setDoorMaterial(clonedMaterial);
+      setDoorOriginalColor(originalMaterial.color.clone());
     }
 
     if (windowRef.current) {
-      setWindowOriginalColor(windowRef.current.material.color.clone());
+      const originalMaterial = materials.window_big_m;
+      const clonedMaterial = originalMaterial.clone();
+      setWindowMaterial(clonedMaterial);
+      setWindowOriginalColor(originalMaterial.color.clone());
     }
 
     if (wallsRef.current) {
-      setWallsOriginalColor(wallsRef.current.material.color.clone());
+      const originalMaterial = materials["walls.png"];
+      const clonedMaterial = originalMaterial.clone();
+      setWallsMaterial(clonedMaterial);
+      setWallsOriginalColor(originalMaterial.color.clone());
     }
 
     if (roofRef.current) {
-      setRoofOriginalColor(roofRef.current.material.color.clone());
+      const originalMaterial = materials["roof.png"];
+      const clonedMaterial = originalMaterial.clone();
+      setRoofMaterial(clonedMaterial);
+      setRoofOriginalColor(originalMaterial.color.clone());
     }
-  }, [doorRef.current, windowRef.current, wallsRef.current, roofRef.current]);  
+  }, [doorRef.current, windowRef.current, wallsRef.current, roofRef.current]);
+
+  useEffect(() => {
+    if (doorMaterial) {
+      doorMaterial.color.set(
+        props.controls.doorColor === "Standard"
+          ? doorOriginalColor
+          : props.controls.doorColor
+      );
+    }
+
+    if (windowMaterial) {
+      windowMaterial.color.set(
+        props.controls.windowColor === "Standard"
+          ? windowOriginalColor
+          : props.controls.windowColor
+      );
+    }
+
+    if (wallsMaterial) {
+      wallsMaterial.color.set(
+        props.controls.wallsColor === "Standard"
+          ? wallsOriginalColor
+          : props.controls.wallsColor
+      );
+    }
+
+    if (roofMaterial) {
+      roofMaterial.color.set(
+        props.controls.roofColor === "Standard"
+          ? roofOriginalColor
+          : props.controls.roofColor
+      );
+    }
+  }, [
+    props.controls,
+    doorMaterial,
+    windowMaterial,
+    wallsMaterial,
+    roofMaterial,
+  ]);
+
+  useEffect(() => {
+    if (doorRef.current) {
+      const materialName =
+        props.controls.doorType === "Type 1"
+          ? materials.door_m
+          : props.controls.doorType === "Type 2"
+          ? "walls.png"
+          : props.controls.doorType === "Type 3"
+          ? "foundation.png"
+          : props.controls.doorType === "Type 4"
+          ? "room.png"
+          : "";
+
+      let originalMaterial;
+      if (materialName && materials[materialName]) {
+        originalMaterial = materials[materialName];
+      } else if (materialName instanceof THREE.Material) {
+        originalMaterial = materialName;
+      }
+
+      const clonedMaterial = originalMaterial.clone();
+      setDoorMaterial(clonedMaterial);
+      doorRef.current.material = clonedMaterial;
+      clonedMaterial.color.set(
+        props.controls.doorColor === "Standard"
+          ? doorOriginalColor
+          : props.controls.doorColor
+      );
+    }
+  }, [props.controls.doorType]);
+
+  useEffect(() => {
+    if (windowRef.current) {
+      const materialName =
+        props.controls.windowType === "Type 1"
+          ? materials.window_big_m
+          : props.controls.windowType === "Type 2"
+          ? "walls.png"
+          : props.controls.windowType === "Type 3"
+          ? "foundation.png"
+          : props.controls.windowType === "Type 4"
+          ? "room.png"
+          : "";
+
+      let originalMaterial;
+      if (materialName && materials[materialName]) {
+        originalMaterial = materials[materialName];
+      } else if (materialName instanceof THREE.Material) {
+        originalMaterial = materialName;
+      }
+
+      const clonedMaterial = originalMaterial.clone();
+      setWindowMaterial(clonedMaterial);
+      windowRef.current.material = clonedMaterial;
+      clonedMaterial.color.set(
+        props.controls.windowColor === "Standard"
+          ? windowOriginalColor
+          : props.controls.windowColor
+      );
+    }
+  }, [props.controls.windowType]);
+
+  useEffect(() => {
+    if (wallsRef.current) {
+      const materialName =
+        props.controls.wallsType === "Type 1"
+          ? "walls.png"
+          : props.controls.wallsType === "Type 2"
+          ? "roof.png"
+          : props.controls.wallsType === "Type 3"
+          ? "foundation.png"
+          : props.controls.wallsType === "Type 4"
+          ? "room.png"
+          : "";
+
+      if (materialName && materials[materialName]) {
+        const originalMaterial = materials[materialName];
+        const clonedMaterial = originalMaterial.clone();
+        setWallsMaterial(clonedMaterial);
+        wallsRef.current.material = clonedMaterial;
+        clonedMaterial.color.set(
+          props.controls.wallsColor === "Standard"
+            ? wallsOriginalColor
+            : props.controls.wallsColor
+        );
+      }
+    }
+  }, [props.controls.wallsType]);
+
+  useEffect(() => {
+    if (roofRef.current) {
+      const materialName =
+        props.controls.roofType === "Type 1"
+          ? "roof.png"
+          : props.controls.roofType === "Type 2"
+          ? "walls.png"
+          : props.controls.roofType === "Type 3"
+          ? "foundation.png"
+          : props.controls.roofType === "Type 4"
+          ? "room.png"
+          : "";
+
+      if (materialName && materials[materialName]) {
+        const originalMaterial = materials[materialName];
+        const clonedMaterial = originalMaterial.clone();
+        setRoofMaterial(clonedMaterial);
+        roofRef.current.material = clonedMaterial;
+        clonedMaterial.color.set(
+          props.controls.roofColor === "Standard"
+            ? roofOriginalColor
+            : props.controls.roofColor
+        );
+      }
+    }
+  }, [props.controls.roofType]);
 
   return (
     <group {...props} dispose={null}>
@@ -75,39 +248,19 @@ export function ProjectOne(props) {
         castShadow
         receiveShadow
         geometry={nodes.Object_7.geometry}
-        material={materials["walls.png"]}
+        material={wallsMaterial}
         rotation={[Math.PI / 2, 0, 0]}
         scale={2.656}
-      >
-        <primitive
-          attach="material"
-          object={materials["walls.png"]}
-          color={
-            props.controls.wallsColor === "Standard"
-              ? wallsOriginalColor
-              : props.controls.wallsColor
-          }
-        />
-      </mesh>
+      />
       <mesh
         ref={roofRef}
         castShadow
         receiveShadow
         geometry={nodes.Object_8.geometry}
-        material={materials["roof.png"]}
+        material={roofMaterial}
         rotation={[Math.PI / 2, 0, 0]}
         scale={2.656}
-      >
-        <primitive
-          attach="material"
-          object={materials["roof.png"]}
-          color={
-            props.controls.roofColor === "Standard"
-              ? roofOriginalColor
-              : props.controls.roofColor
-          }
-        />
-      </mesh>
+      />
       <mesh
         castShadow
         receiveShadow
@@ -129,20 +282,10 @@ export function ProjectOne(props) {
         castShadow
         receiveShadow
         geometry={nodes.Object_12.geometry}
-        material={materials.door_m}
+        material={doorMaterial}
         position={[-0.782, 2.923, 9.956]}
         scale={0.025}
-      >
-        <primitive
-          attach="material"
-          object={materials.door_m}
-          color={
-            props.controls.doorColor === "Standard"
-              ? doorOriginalColor
-              : props.controls.doorColor
-          }
-        />
-      </mesh>
+      />
       <mesh
         castShadow
         receiveShadow
@@ -164,21 +307,11 @@ export function ProjectOne(props) {
         castShadow
         receiveShadow
         geometry={nodes.Object_25.geometry}
-        material={materials.window_big_m}
+        material={windowMaterial}
         position={[10.093, 7.054, 13.394]}
         rotation={[-Math.PI, 0.003, -Math.PI]}
         scale={0.025}
-      >
-        <primitive
-          attach="material"
-          object={materials.window_big_m}
-          color={
-            props.controls.windowColor === "Standard"
-              ? windowOriginalColor
-              : props.controls.windowColor
-          }
-        />
-      </mesh>
+      />
       <mesh
         castShadow
         receiveShadow
