@@ -16,7 +16,7 @@ export default function Drawer() {
       options: ["First project", "Second project"],
     },
     autorotate: { value: true, label: "Auto Rotate" },
-    rotateSpeed: { value: 2, min: 1, max: 10, label: "Rotate Speed" },
+    rotateSpeed: { value: 1, min: 1, max: 10, label: "Rotate Speed" },
     doorType: {
       options: ["Type 1", "Type 2", "Type 3", "Type 4"],
       label: "Door Type",
