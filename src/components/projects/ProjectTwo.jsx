@@ -222,7 +222,7 @@ export function ProjectTwo(props) {
         castShadow
         receiveShadow
         geometry={nodes.Mesh2_Western_Red_Cedar_Stack_0.geometry}
-        material={wallsMaterial}
+        material={wallsMaterial || materials.Western_Red_Cedar_Stack}
         scale={0.004}
       />
       <mesh
@@ -246,7 +246,7 @@ export function ProjectTwo(props) {
         castShadow
         receiveShadow
         geometry={nodes.Mesh4_Steel_Brushed_Stainless_0.geometry}
-        material={windowMaterial}
+        material={windowMaterial || materials.brushed_aluminium1}
         scale={0.004}
       />
       <mesh
@@ -287,7 +287,9 @@ export function ProjectTwo(props) {
         geometry={
           nodes.Mesh83_M_22_raw_wood_oak_light_PBR_texture_seamless_0.geometry
         }
-        material={doorMaterial}
+        material={
+          doorMaterial || materials.M_22_raw_wood_oak_light_PBR_texture_seamless
+        }
         scale={0.004}
       />
       <mesh
