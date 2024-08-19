@@ -13,8 +13,8 @@ interface Controls {
   windowColor: string;
   wallsType: string;
   wallsColor: string;
-  roofType: string | undefined;
-  roofColor: string | undefined;
+  roofType: string;
+  roofColor: string;
 }
 
 interface ControlsContextType {
