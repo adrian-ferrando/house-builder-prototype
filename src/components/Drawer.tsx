@@ -2,54 +2,16 @@
 
 import * as THREE from "three";
 import { Floor } from "./Floor";
-import { useControls } from "leva";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ProjectOne } from "./projects/ProjectOne";
 import { ProjectTwo } from "./projects/ProjectTwo";
+import { useControlsContext } from "@/contexts/ControlsProvider";
 import { DirectionalLight, DirectionalLightHelper } from "three";
 import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 
 export default function Drawer() {
-  const [controls, setControls] = useControls(() => ({
-    Model: {
-      options: ["First project", "Second project"],
-    },
-    autorotate: { value: true, label: "Auto Rotate" },
-    rotateSpeed: { value: 1, min: 1, max: 10, label: "Rotate Speed" },
-    doorType: {
-      options: ["Type 1", "Type 2", "Type 3", "Type 4"],
-      label: "Door Type",
-    },
-    doorColor: {
-      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
-      label: "Door Color",
-    },
-    windowType: {
-      options: ["Type 1", "Type 2", "Type 3", "Type 4"],
-      label: "Window Type",
-    },
-    windowColor: {
-      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
-      label: "Window Color",
-    },
-    wallsType: {
-      options: ["Type 1", "Type 2", "Type 3", "Type 4"],
-      label: "Walls Type",
-    },
-    wallsColor: {
-      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
-      label: "Walls Color",
-    },
-    roofType: {
-      options: ["Type 1", "Type 2", "Type 3", "Type 4"],
-      label: "Roof Type",
-    },
-    roofColor: {
-      options: ["Standard", "Red", "Green", "Blue", "Yellow"],
-      label: "Roof Color",
-    },
-  }));
+  const { controls, setControls } = useControlsContext();
 
   return (
     <Canvas

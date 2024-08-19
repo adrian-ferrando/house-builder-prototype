@@ -59,7 +59,7 @@ export function ProjectOne(props) {
       setRoofMaterial(clonedMaterial);
       setRoofOriginalColor(originalMaterial.color.clone());
     }
-  }, [doorRef.current, windowRef.current, wallsRef.current, roofRef.current]);
+  }, [materials]);
 
   useEffect(() => {
     if (doorMaterial) {
@@ -96,9 +96,13 @@ export function ProjectOne(props) {
   }, [
     props.controls,
     doorMaterial,
+    doorOriginalColor,
     windowMaterial,
+    windowOriginalColor,
     wallsMaterial,
+    wallsOriginalColor,
     roofMaterial,
+    roofOriginalColor,
   ]);
 
   useEffect(() => {
@@ -130,7 +134,12 @@ export function ProjectOne(props) {
           : props.controls.doorColor
       );
     }
-  }, [props.controls.doorType]);
+  }, [
+    materials,
+    doorOriginalColor,
+    props.controls.doorType,
+    props.controls.doorColor,
+  ]);
 
   useEffect(() => {
     if (windowRef.current) {
@@ -161,7 +170,12 @@ export function ProjectOne(props) {
           : props.controls.windowColor
       );
     }
-  }, [props.controls.windowType]);
+  }, [
+    materials,
+    windowOriginalColor,
+    props.controls.windowType,
+    props.controls.windowColor,
+  ]);
 
   useEffect(() => {
     if (wallsRef.current) {
@@ -188,7 +202,14 @@ export function ProjectOne(props) {
         );
       }
     }
-  }, [props.controls.wallsType]);
+  }, [
+    materials,
+    wallsOriginalColor,
+    windowOriginalColor,
+    props.controls.wallsType,
+    props.controls.wallsColor,
+    props.controls.windowColor,
+  ]);
 
   useEffect(() => {
     if (roofRef.current) {
@@ -215,7 +236,12 @@ export function ProjectOne(props) {
         );
       }
     }
-  }, [props.controls.roofType]);
+  }, [
+    materials,
+    roofOriginalColor,
+    props.controls.roofType,
+    props.controls.roofColor,
+  ]);
 
   return (
     <group {...props} dispose={null}>

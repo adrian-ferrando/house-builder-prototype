@@ -58,13 +58,7 @@ export function ProjectTwo(props) {
       alert("Roof type is not supported on the second project model");
       props.setControls({ roofType: "Type 1" });
     }
-  }, [
-    props.controls.Model,
-    props.controls.roofColor,
-    doorRef.current,
-    windowRef.current,
-    wallsRef.current,
-  ]);
+  }, [props, materials]);
 
   useEffect(() => {
     if (doorMaterial) {
@@ -90,7 +84,15 @@ export function ProjectTwo(props) {
           : props.controls.wallsColor
       );
     }
-  }, [props.controls, doorMaterial, windowMaterial, wallsMaterial]);
+  }, [
+    props.controls,
+    doorMaterial,
+    wallsMaterial,
+    windowMaterial,
+    doorOriginalColor,
+    wallsOriginalColor,
+    windowOriginalColor,
+  ]);
 
   useEffect(() => {
     if (doorRef.current) {
@@ -115,7 +117,12 @@ export function ProjectTwo(props) {
           : props.controls.doorColor
       );
     }
-  }, [props.controls.doorType]);
+  }, [
+    materials,
+    doorOriginalColor,
+    props.controls.doorType,
+    props.controls.doorColor,
+  ]);
 
   useEffect(() => {
     if (windowRef.current) {
@@ -140,7 +147,12 @@ export function ProjectTwo(props) {
           : props.controls.windowColor
       );
     }
-  }, [props.controls.windowType]);
+  }, [
+    materials,
+    windowOriginalColor,
+    props.controls.windowType,
+    props.controls.windowColor,
+  ]);
 
   useEffect(() => {
     if (wallsRef.current) {
@@ -165,7 +177,12 @@ export function ProjectTwo(props) {
           : props.controls.wallsColor
       );
     }
-  }, [props.controls.wallsType]);
+  }, [
+    materials,
+    wallsOriginalColor,
+    props.controls.wallsType,
+    props.controls.wallsColor,
+  ]);
 
   return (
     <group {...props} dispose={null}>
@@ -205,7 +222,7 @@ export function ProjectTwo(props) {
         castShadow
         receiveShadow
         geometry={nodes.Mesh2_Western_Red_Cedar_Stack_0.geometry}
-        material={wallsMaterial}
+        material={wallsMaterial || materials.Western_Red_Cedar_Stack}
         scale={0.004}
       />
       <mesh
@@ -229,7 +246,7 @@ export function ProjectTwo(props) {
         castShadow
         receiveShadow
         geometry={nodes.Mesh4_Steel_Brushed_Stainless_0.geometry}
-        material={windowMaterial}
+        material={windowMaterial || materials.brushed_aluminium1}
         scale={0.004}
       />
       <mesh
@@ -270,7 +287,9 @@ export function ProjectTwo(props) {
         geometry={
           nodes.Mesh83_M_22_raw_wood_oak_light_PBR_texture_seamless_0.geometry
         }
-        material={doorMaterial}
+        material={
+          doorMaterial || materials.M_22_raw_wood_oak_light_PBR_texture_seamless
+        }
         scale={0.004}
       />
       <mesh
