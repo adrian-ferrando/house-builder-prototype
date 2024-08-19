@@ -3,5 +3,10 @@
 import { Leva } from "leva";
 
 export default function RightBar() {
-  return <Leva fill />;
+  return (
+    <div>
+      pepoclown
+      <Leva fill />
+    </div>
+  );
 }
