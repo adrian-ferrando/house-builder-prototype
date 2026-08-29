@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
-import { MeshProps, useFrame } from "@react-three/fiber";
+import { ThreeElements, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
+import type { Mesh } from "three";
 
-export default function Square(props: MeshProps) {
+export default function Square(props: ThreeElements["mesh"]) {
   // This reference gives us direct access to the THREE.Mesh object
-  const ref: any = useRef();
+  const ref = useRef<Mesh>(null);
 
   // Controls
   const squareControls = useControls({
@@ -16,7 +17,9 @@ export default function Square(props: MeshProps) {
   const [clicked, click] = useState(false);
 
   // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) => (ref.current.rotation.x += delta));
+  useFrame((state, delta) => {
+    if (ref.current) ref.current.rotation.x += delta;
+  });
 
   // Return the view, these are regular Threejs elements expressed in JSX
   return (

@@ -19,7 +19,7 @@ export default function Drawer() {
         antialias: true,
         toneMapping: THREE.ReinhardToneMapping,
       }}
-      shadows
+      shadows="percentage"
     >
       <Camera />
       <Lights />

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useId, useState } from "react";
+import Link from "next/link";
 import { MainLogo } from "./logos/main-logo";
 import { NavbarIcons } from "./icons/navbar";
 
@@ -12,14 +13,14 @@ export default function Header() {
   return (
     <header className="z-50 border-b border-white border-opacity-10 backdrop-blur-lg shadow-md">
       <div className="grid items-center justify-center md:justify-normal w-full grid-cols-[auto_1fr] mx-auto gap-x-10 md:flex max-w-screen-base">
-        <a
+        <Link
           href="/"
           className="ml-4 transition-transform duration-300 hover:scale-125"
           title="Ir a la página principal"
           aria-label="Ir a la página principal"
         >
           <MainLogo className="w-10 h-12" />
-        </a>
+        </Link>
         <nav
           id={navbarId}
           className={cn(
